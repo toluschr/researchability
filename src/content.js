@@ -1,0 +1,12 @@
+import { Readability } from "@mozilla/readability";
+import TurndownService from 'turndown';
+
+let article = new Readability(document.cloneNode(true)).parse();
+let turndownService = new TurndownService();
+let markdown = turndownService.turndown(article.content);
+let blob = new Blob([markdown], { type: "text/markdown" });
+let link = document.createElement("a");
+link.href = URL.createObjectURL(blob);
+link.download = `${document.title}.md`;
+link.click();
+URL.revokeObjectURL(link.href);
