@@ -8,4 +8,6 @@ Archive articles as markdown using mozilla readability and turndown
 $ npm run build
 ```
 
-Get `dist/content.js` into your browser, i.e. using [Code Injector](https://github.com/Lor-Saba/Code-Injector).
+Get `dist/content.js` into your browser, i.e. using
+[Code Injector](https://github.com/Lor-Saba/Code-Injector)
+or a bookmarklet.
