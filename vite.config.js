@@ -38,6 +38,17 @@ export default defineConfig({
         }
     ],
     build: {
+        minify: "terser",
+        terserOptions: {
+            compress: {
+                passes: 4,
+                arguments: true,
+                toplevel: true,
+                booleans_as_integers: true,
+                drop_console: true,
+                drop_debugger: true,
+            },
+        },
         rollupOptions: {
             input: {
                 content: resolve(__dirname, "src/content.js"),
