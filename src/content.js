@@ -1,7 +1,9 @@
 import { Readability } from "@mozilla/readability";
 import TurndownService from 'turndown';
+import yaml from 'js-yaml';
 
-let article = new Readability(document.cloneNode(true)).parse();
+let readability = new Readability(document.cloneNode(true))
+let article = readability.parse();
 let turndownService = new TurndownService({codeBlockStyle: "fenced"});
 
 turndownService.addRule('preCodeBlock', {
@@ -14,10 +16,17 @@ turndownService.addRule('preCodeBlock', {
     }
 });
 
-let markdown = turndownService.turndown(article.content);
+let frontMatter = yaml.dump({
+    title: article.title,
+    date: article.publishedTime,
+    lang: article.lang,
+    url: document.URL,
+})
+
+let markdown = `---\n${frontMatter}---\n\n${turndownService.turndown(article.content)}`;
 let blob = new Blob([markdown], { type: "text/markdown" });
 let link = document.createElement("a");
 link.href = URL.createObjectURL(blob);
-link.download = `${document.title}.md`;
+link.download = `${article.title}.md`;
 link.click();
 URL.revokeObjectURL(link.href);
