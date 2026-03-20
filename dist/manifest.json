@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "researchability",
+  "version": "0.0.1",
+  "description": "Archive articles as markdown using mozilla readability and turndown",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads"
+  ],
+  "action": {
+    "default_title": "Archive articles as markdown using mozilla readability and turndown"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  }
+}
